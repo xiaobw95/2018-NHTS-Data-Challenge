@@ -105,7 +105,7 @@ make_map(statistic_hybird)
 ## Bayesian Belief Network
 
 ```{r}
-#data cleaning
+#data
 df_person <- nhts_data$data$person
 df_person <- data.frame(tnc_user=df_person$USES_TNC,
                        education=df_person$EDUC,
@@ -113,23 +113,61 @@ df_person <- data.frame(tnc_user=df_person$USES_TNC,
                        health=df_person$HEALTH,
                        age=df_person$R_AGE,
                        gender=df_person$R_SEX)
-lambda <- function(x) !(x %in% c("-7","-8","-9"))
+lambda <- function(x) x >= 0
+df_person[,1:6] <- lapply(df_person[,1:6], as.numeric)
 df_person <- df_person[complete.cases(df_person)&
                         lambda(df_person$education)&
                         lambda(df_person$race)&
                         lambda(df_person$health)&
                         lambda(df_person$gender),]
+
 #discretize continuous variables
 library(arules)
 df_person$age <- discretize(df_person$age, method = "frequency", breaks = 5)
+
 #fatorize variables
 df_person[,1:6] <- lapply(df_person[,1:6], as.character)
 df_person[,1:6] <- lapply(df_person[,1:6], factor)
+
 #BNN
 library(bnlearn)
 boot <- boot.strength(df_person, R = 500, algorithm = "hc", algorithm.args = list(score = "bde", iss = 10))
-boot[boot$strength > 0.85 & boot$direction >= 0.5, ]
+print(boot[boot$strength > 0.85 & boot$direction >= 0.5, ])
 avg.boot <- averaged.network(boot,threshold = 0.85)
 avg.boot <- skeleton(avg.boot)
 plot(avg.boot)
+```
+
+## Random Forrest
+
+```{r}
+#merging "person" and "household"
+df_person <- nhts_data$data$person
+df_household <- nhts_data$data$household
+df <- as.data.frame(merge(df_person, df_household, by='HOUSEID'))
+
+#preprocessing
+df <- df[,-which(names(df) %in% c("IS_BIKER"))]
+df <- df[,3:ncol(df)]
+df <- df[complete.cases(df),]
+lambda <- function(x) cut(x, breaks=unique(c(quantile(x))),include.lowest=TRUE)
+for(i in 1:ncol(df)){
+  if(is.numeric(df[,i])){
+    df[df[,i]>=0,i] <- lambda(df[df[,i]>=0,i])
+  }
+}
+df[,1:ncol(df)] <- lapply(df, factor)
+index <- c()
+for(i in 1:ncol(df)){
+  if(length(levels(df[,i]))>53){
+    index <- c(index,i)
+  }
+}
+df <- df[,-index]
+
+#random forrest
+library(randomForest)
+library(caret)
+fit <- randomForest(USES_TNC~., data=df, maxnodes=20)
+varImpPlot(fit,type=2)
 ```
