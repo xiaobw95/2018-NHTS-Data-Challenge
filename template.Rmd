@@ -1,0 +1,135 @@
+---
+title: "template"
+author: "Bowen Xiao"
+date: "September 1, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Package for NHTS
+
+```{r}
+library(summarizeNHTS)
+```
+
+## Data Load
+
+```{r}
+nhts_data <- read_data("2017", "./data")
+```
+
+## Generating Estimates
+
+The detailed configurations of "IS_BIKER" and "USES_TNC" are in `./data/csv/2017/derived_variable_config.csv`.
+
+```{r}
+summarize_data(
+  data = nhts_data,
+  agg = "person_count",
+  by = c("IS_BIKER", "USES_TNC"),
+  prop = TRUE
+)
+```
+
+```{r}
+summarize_data(
+  data = nhts_data,
+  agg = "person_count",
+  by = c("R_RACE", "USES_TNC"),
+  prop = TRUE
+)
+```
+
+```{r}
+summarize_data(
+  data = nhts_data,
+  agg = "person_count",
+  by = c("EDUC", "IS_BIKER"),
+  prop = TRUE
+)
+```
+
+## Visualizing Estimates
+
+```{r}
+statistic_tnc <- summarize_data(
+  data = nhts_data,
+  agg = "person_count",
+  subset = 'USES_TNC=="1"',
+  by = "HHSTFIPS",
+  exclude_missing = TRUE
+)
+
+make_map(statistic_tnc)
+```
+
+```{r}
+statistic_bike <- summarize_data(
+  data = nhts_data,
+  agg = "person_count",
+  subset = 'IS_BIKER=="1"',
+  by = "HHSTFIPS",
+  exclude_missing = TRUE
+)
+
+make_map(statistic_bike)
+```
+
+```{r}
+statistic_bike_travel <- summarize_data(
+  data = nhts_data,
+  agg = "household_count",
+  subset = 'IS_BIKE_TRAVELER=="1"',
+  by = "HHSTFIPS",
+  exclude_missing = TRUE
+)
+
+make_map(statistic_bike_travel)
+```
+
+```{r}
+statistic_hybird <- summarize_data(
+  data = nhts_data,
+  agg = "vehicle_count",
+  subset = 'IS_HYBIRD=="1"',
+  by = "HHSTFIPS",
+  exclude_missing = TRUE
+)
+
+make_map(statistic_hybird)
+```
+
+## Bayesian Belief Network
+
+```{r}
+#data cleaning
+df_person <- nhts_data$data$person
+df_person <- data.frame(tnc_user=df_person$USES_TNC,
+                       education=df_person$EDUC,
+                       race=df_person$R_RACE,
+                       health=df_person$HEALTH,
+                       age=df_person$R_AGE,
+                       gender=df_person$R_SEX)
+lambda <- function(x) !(x %in% c("-7","-8","-9"))
+df_person <- df_person[complete.cases(df_person)&
+                        lambda(df_person$education)&
+                        lambda(df_person$race)&
+                        lambda(df_person$health)&
+                        lambda(df_person$gender),]
+#discretize continuous variables
+library(arules)
+df_person$age <- discretize(df_person$age, method = "frequency", breaks = 5)
+#fatorize variables
+df_person[,1:6] <- lapply(df_person[,1:6], as.character)
+df_person[,1:6] <- lapply(df_person[,1:6], factor)
+#BNN
+library(bnlearn)
+boot <- boot.strength(df_person, R = 500, algorithm = "hc", algorithm.args = list(score = "bde", iss = 10))
+boot[boot$strength > 0.85 & boot$direction >= 0.5, ]
+avg.boot <- averaged.network(boot,threshold = 0.85)
+avg.boot <- skeleton(avg.boot)
+plot(avg.boot)
+```
