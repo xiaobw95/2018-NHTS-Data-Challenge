@@ -1,5 +1,7 @@
 # 2018-NHTS-Data-Challenge
 
+Working space for NHTS Data Challenge.
+
 - [2017 NHTS User Guide](https://nhts.ornl.gov/assets/2017UsersGuide.pdf)
 
 - [Exporing the NHTS with R](https://rawgit.com/Westat-Transportation/summarizeNHTS/master/inst/tutorials/workshop/Workshop.html#(1))
