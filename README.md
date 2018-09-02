@@ -2,20 +2,36 @@
 
 Working space for NHTS Data Challenge.
 
-- [2017 NHTS User Guide](https://nhts.ornl.gov/assets/2017UsersGuide.pdf)
+- Primary Documents
 
-- [Exporing the NHTS with R](https://rawgit.com/Westat-Transportation/summarizeNHTS/master/inst/tutorials/workshop/Workshop.html#(1))
+  - [2017 NHTS User Guide](https://nhts.ornl.gov/assets/2017UsersGuide.pdf)
 
-- [Overview of Bayesian Networks With Examples in R](http://www.ucdenver.edu/academics/colleges/PublicHealth/Academics/departments/Biostatistics/WorkingGroups/Documents/Networks%20Presentation%20With%20Sachs%20-%20032317.pdf)
+  - [Exporing the NHTS with R](https://rawgit.com/Westat-Transportation/summarizeNHTS/master/inst/tutorials/workshop/Workshop.html#(1))
 
-- [Statistical Models for Causal Analysis](http://web.mit.edu/teppei/www/teaching/Keio2016/01po.pdf)
+- Survey Data
 
-- [Ideal Point Estimation](https://jrnold.github.io/bugs-examples-in-stan/legislators)
+  - [Jackknif resampling](https://en.wikipedia.org/wiki/Jackknife_resampling)  
 
-- [PeopleforBikes](http://peopleforbikes.org/our-work/statistics/statistics-category/?cat=participation-statistics)
+- Bayesian Statistics
 
-- [Automated Vehicle Identification](https://www.mccarran.com/Business/Transportation/TaxiTNC)
+  - [Using Survey Design Weights Bayesian Regression Models1](https://discourse.mc-stan.org/t/survey-weighted-regression/1654/10)
+  
+  - [Using Survey Design Weights Bayesian Regression Models2](https://rpubs.com/corey_sparks/157901)
+  
+  - [Using Survey Design Weights Bayesian Regression Models3](http://rpubs.com/corey_sparks/164805)
 
-- [Jackknif resampling](https://en.wikipedia.org/wiki/Jackknife_resampling)
+  - [Overview of Bayesian Networks With Examples in R](http://www.ucdenver.edu/academics/colleges/PublicHealth/Academics/departments/Biostatistics/WorkingGroups/Documents/Networks%20Presentation%20With%20Sachs%20-%20032317.pdf)
 
-- [R Graphics](https://www.r-graph-gallery.com/)
+  - [Statistical Models for Causal Analysis](http://web.mit.edu/teppei/www/teaching/Keio2016/01po.pdf)
+
+  - [Ideal Point Estimation](https://jrnold.github.io/bugs-examples-in-stan/legislators)
+  
+  - [Bayesian Neural Network](http://edwardlib.org/tutorials/bayesian-neural-network)
+  
+- Other Resources
+
+  - [PeopleforBikes](http://peopleforbikes.org/our-work/statistics/statistics-category/?cat=participation-statistics)
+
+  - [Automated Vehicle Identification](https://www.mccarran.com/Business/Transportation/TaxiTNC)
+
+  - [R Graphics](https://www.r-graph-gallery.com/)
