@@ -8,9 +8,13 @@ Working space for NHTS Data Challenge.
 
   - [Exporing the NHTS with R](https://rawgit.com/Westat-Transportation/summarizeNHTS/master/inst/tutorials/workshop/Workshop.html#(1))
 
-- Survey Data
+- Survey Data And Preprocessing
 
-  - [Jackknif resampling](https://en.wikipedia.org/wiki/Jackknife_resampling)  
+  - [Jackknif Resampling](https://en.wikipedia.org/wiki/Jackknife_resampling) 
+  
+  - [Variable Clustering](http://math.furman.edu/~dcs/courses/math47/R/library/Hmisc/html/varclus.html)
+  
+  - [Imputing Missing Values](https://www.analyticsvidhya.com/blog/2016/03/tutorial-powerful-packages-imputing-missing-values/)
 
 - Bayesian Statistics
 
