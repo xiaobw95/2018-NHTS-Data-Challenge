@@ -28,6 +28,14 @@ Working space for NHTS Data Challenge.
   
   - [Bayesian Neural Network](http://edwardlib.org/tutorials/bayesian-neural-network)
   
+- Random Forrest
+
+  - [Weighted Random Forrest](https://www.rdocumentation.org/packages/randomForestSRC/versions/2.4.1/topics/rfsrc)
+  
+- XGBoost
+
+  - [EXtreme Gradient Boosting Training](https://www.rdocumentation.org/packages/xgboost/versions/0.71.2/topics/xgb.train)
+  
 - Other Resources
 
   - [PeopleforBikes](http://peopleforbikes.org/our-work/statistics/statistics-category/?cat=participation-statistics)
