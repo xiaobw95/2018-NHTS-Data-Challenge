@@ -102,6 +102,31 @@ statistic_hybird <- summarize_data(
 make_map(statistic_hybird)
 ```
 
+## Replicate Weights
+
+```{r}
+summarize_data(
+  data = nhts_data,
+  agg = "person_count",
+  by = c("USES_TNC"),
+  prop = TRUE
+)
+```
+
+```{r}
+df_tnc <- as.data.frame(nhts_data$data$person)
+df_tnc <- df_tnc[,which(names(df_tnc) %in% c("HOUSEID","PERSONID","USES_TNC"))]
+df_tnc <- merge(df_tnc,as.data.frame(nhts_data$weights$person),by=c("HOUSEID","PERSONID"))
+df_tnc <- df_tnc[complete.cases(df_tnc),]
+(est <- sum(df_tnc[df_tnc$USES_TNC=='1',]$WTPERFIN)/sum(df_tnc$WTPERFIN))
+var <- 0
+for(i in 5:102){
+  temp <- sum(df_tnc[df_tnc$USES_TNC=='1',i])/sum(df_tnc[,i])
+  var <- var + 6*(temp - est)^2/7
+}
+sqrt(var)
+```
+
 ## Bayesian Belief Network
 
 ```{r}
