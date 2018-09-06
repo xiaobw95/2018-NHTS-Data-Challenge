@@ -127,6 +127,21 @@ for(i in 5:102){
 sqrt(var)
 ```
 
+## Bootstrap
+
+```{r}
+library(dplyr)
+set.seed(2017)
+est1 <- c()
+for(i in 1:1000){
+  temp <- sample_n(df_tnc,nrow(df_tnc),replace=TRUE)
+  est1 <- c(est1,sum(temp[temp$USES_TNC=='1',]$WTPERFIN)/sum(temp$WTPERFIN))
+}
+mean(est1)
+sd(est1)
+hist(est1)
+```
+
 ## Bayesian Belief Network
 
 ```{r}
