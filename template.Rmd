@@ -127,19 +127,30 @@ for(i in 5:102){
 sqrt(var)
 ```
 
-## Bootstrap
+## m-out-of-n Bootstrap
 
 ```{r}
 library(dplyr)
 set.seed(2017)
 est1 <- c()
 for(i in 1:1000){
-  temp <- sample_n(df_tnc,nrow(df_tnc),replace=TRUE)
+  temp <- sample_n(df_tnc,0.3*nrow(df_tnc),replace=TRUE)
   est1 <- c(est1,sum(temp[temp$USES_TNC=='1',]$WTPERFIN)/sum(temp$WTPERFIN))
 }
 mean(est1)
 sd(est1)
 hist(est1)
+```
+
+```{r}
+est2 <- c()
+for(i in 1:1000){
+  temp <- sample_n(df_tnc,0.05*nrow(df_tnc),weight=df_tnc$WTPERFIN,replace=TRUE)
+  est2 <- c(est2,mean(temp$USES_TNC=='1'))
+}
+mean(est2)
+sd(est2)
+hist(est2)
 ```
 
 ## Bayesian Belief Network
