@@ -153,6 +153,21 @@ sd(est2)
 hist(est2)
 ```
 
+## Double Bootstrap
+
+```{r}
+est3 <- c()
+for(i in 1:100){
+  temp1 <- sample_n(df_tnc,0.05*nrow(df_tnc),weight=df_tnc$WTPERFIN,replace=TRUE)
+  est4 <- c()
+  for(j in 1:100){
+    temp2 <- sample_n(temp1,nrow(temp1),replace=TRUE)
+    est4 <- c(est4,mean(temp2$USES_TNC=='1'))
+  }
+  est3 <- c(est3,mean(est4))
+}
+```
+
 ## Bayesian Belief Network
 
 ```{r}
