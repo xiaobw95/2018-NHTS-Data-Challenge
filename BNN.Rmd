@@ -1,0 +1,83 @@
+---
+title: "BNN"
+author: "Bowen Xiao"
+date: "September 12, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data
+
+```{r}
+library(summarizeNHTS)
+nhts_data <- read_data("2017", "./data")
+
+df_tnc <- as.data.frame(merge(as.data.frame(nhts_data$data$person), 
+                              as.data.frame(nhts_data$data$household), 
+                              by='HOUSEID'))
+df_tnc <- merge(df_tnc,as.data.frame(nhts_data$weights$person),by=c("HOUSEID","PERSONID"))
+df_tnc <- data.frame(tnc_user=df_tnc$USES_TNC,
+                       education=df_tnc$EDUC,
+                       race=df_tnc$R_RACE,
+                       health=df_tnc$HEALTH,
+                       age=df_tnc$AGE_LEVEL,
+                       gender=df_tnc$R_SEX,
+                       income=df_tnc$HHFAMIN,
+                       job=df_tnc$OCCAT,
+                       state=df_tnc$HHSTFIPS,
+                       weight=df_tnc$WTPERFIN)
+
+#cleaning
+lambda <- function(x) as.numeric(x) > 0
+df_tnc[,1:9] <- lapply(df_tnc[,1:9], as.character)
+df_tnc <- df_tnc[lambda(df_tnc$education)&
+                   lambda(df_tnc$race)&
+                   lambda(df_tnc$health)&
+                   lambda(df_tnc$age)&
+                   lambda(df_tnc$gender)&
+                   lambda(df_tnc$income)&
+                   lambda(df_tnc$job)&
+                   lambda(df_tnc$state),]
+df_tnc <- df_tnc[complete.cases(df_tnc),]
+
+#fatorize variables
+df_tnc[,1:9] <- lapply(df_tnc[,1:9], factor)
+```
+
+## Bayesian Belief Network
+
+```{r message=FALSE}
+library(dplyr)
+library(knitr)
+library(bnlearn)
+library(Rgraphviz)
+
+set.seed(2018)
+
+#bootstrap-based BNN generator
+arc <- data.frame()
+for(i in 1:1000){
+  temp <- sample_n(df_tnc,0.1*nrow(df_tnc),weight=df_tnc$WTPERFIN,replace=TRUE)
+  temp <- temp[,1:9]
+  temp[,1:9] <- lapply(temp[,1:9], as.character)
+  temp[,1:9] <- lapply(temp[,1:9], factor)
+  boot <- boot.strength(temp, R = 500, algorithm = "mmpc")
+  arc <- rbind(arc,boot)
+}
+
+#agregate
+Fun <- function(x) sum(x)/1000
+bnn <- arc %>%
+        group_by(from, to) %>%
+        summarise(strength=Fun(strength),direction=Fun(direction))
+class(bnn) <- c("bn.strength","data.frame")
+
+#visualization
+kable(bnn[bnn$strength>0.8,])
+net=empty.graph(colnames(df_tnc[,1:9]))
+arcs(net) = bnn[bnn$strength>0.05,1:2]
+strength.plot(net,bnn)
+```
