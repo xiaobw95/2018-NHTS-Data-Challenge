@@ -60,7 +60,7 @@ set.seed(2018)
 #bootstrap-based BNN generator
 arc <- data.frame()
 for(i in 1:1000){
-  temp <- sample_n(df_tnc,0.1*nrow(df_tnc),weight=df_tnc$WTPERFIN,replace=TRUE)
+  temp <- sample_n(df_tnc,0.1*nrow(df_tnc),weight=df_tnc$weight,replace=TRUE)
   temp <- temp[,1:9]
   temp[,1:9] <- lapply(temp[,1:9], as.character)
   temp[,1:9] <- lapply(temp[,1:9], factor)
@@ -69,14 +69,22 @@ for(i in 1:1000){
 }
 
 #agregate
-Fun <- function(x) sum(x)/1000
+Fun1 <- function(x) sum(x)/1000
+Fun2 <- function(x) sd(c(x,rep(0,1000-length(x))))
 bnn <- arc %>%
         group_by(from, to) %>%
-        summarise(strength=Fun(strength),direction=Fun(direction))
+        summarise(strength=Fun1(strength),
+                  direction=Fun1(direction))
+bnn1 <- arc %>%
+        group_by(from, to) %>%
+        summarise(strength=Fun1(strength),
+                  direction=Fun1(direction),
+                  sd.strength=Fun2(strength),
+                  sd.direction=Fun2(direction))
 class(bnn) <- c("bn.strength","data.frame")
 
 #visualization
-kable(bnn[bnn$strength>0.8,])
+kable(bnn1)
 net=empty.graph(colnames(df_tnc[,1:9]))
 arcs(net) = bnn[bnn$strength>0.05,1:2]
 strength.plot(net,bnn)
