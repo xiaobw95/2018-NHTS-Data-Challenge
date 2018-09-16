@@ -17,3 +17,6 @@ IS_HYBIRD,vehicle,character,FUELTYPE %in% '03',1,Yes
 IS_HYBIRD,vehicle,character,"FUELTYPE %in% c('01','02','97')",2,No
 IS_BIKE_TRAVELER,household,character,"BIKE %in% c('01','02','03','04')",1,Yes
 IS_BIKE_TRAVELER,household,character,BIKE %in% '05',2,No
+AGE_LEVEL,person,numeric,R_AGE>0 & R_AGE<=30,1,Young
+AGE_LEVEL,person,numeric,R_AGE>30 & R_AGE<=60,2,Middle
+AGE_LEVEL,person,numeric,R_AGE>60,3,Senior
