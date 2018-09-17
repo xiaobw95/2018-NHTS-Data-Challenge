@@ -20,3 +20,17 @@ IS_BIKE_TRAVELER,household,character,BIKE %in% '05',2,No
 AGE_LEVEL,person,numeric,R_AGE>0 & R_AGE<=30,1,Young
 AGE_LEVEL,person,numeric,R_AGE>30 & R_AGE<=60,2,Middle
 AGE_LEVEL,person,numeric,R_AGE>60,3,Senior
+M_TNC,person,character,RIDESHARE < 0,1,M
+M_TNC,person,character,RIDESHARE >= 0,2,N
+M_SEX,person,character,R_SEX<0,1,M
+M_SEX,person,character,R_SEX>=0,2,N
+M_RACE,person,character,R_RACE<0,1,M
+M_RACE,person,character,R_RACE>=0,2,N
+M_AGE,person,numeric,R_AGE<0,1,M
+M_AGE,person,numeric,R_AGE>=0,2,N
+M_HEALTH,person,character,HEALTH<0,1,M
+M_HEALTH,person,character,HEALTH>=0,2,N
+M_OCCAT,person,character,OCCAT<0,1,M
+M_OCCAT,person,character,OCCAT>=0,2,N
+M_EDUC,person,character,EDUC<0,1,M
+M_EDUC,person,character,EDUC>=0,2,N
