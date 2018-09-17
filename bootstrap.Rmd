@@ -67,37 +67,7 @@ est_4 <- summarize_data(
 est_5 <- summarize_data(
   data = nhts_data,
   agg = "person_count",
-  by = c("HHFAMINC", "USES_TNC"),
-  exclude_missing = TRUE,
-  prop = TRUE
-)
-```
-
-```{r}
-est_6 <- summarize_data(
-  data = nhts_data,
-  agg = "person_count",
-  by = c("OCCAT", "USES_TNC"),
-  exclude_missing = TRUE,
-  prop = TRUE
-)
-```
-
-```{r}
-est_7 <- summarize_data(
-  data = nhts_data,
-  agg = "person_count",
   by = c("EDUC", "USES_TNC"),
-  exclude_missing = TRUE,
-  prop = TRUE
-)
-```
-
-```{r}
-est_8 <- summarize_data(
-  data = nhts_data,
-  agg = "person_count",
-  by = c("HHSTFIPS","USES_TNC"),
   exclude_missing = TRUE,
   prop = TRUE
 )
@@ -230,73 +200,14 @@ for(l in 1:nlevels(df$HEALTH)){
 }
 ```
 
-```{r}
-df <- df_tnc[as.numeric(df_tnc$HHFAMINC)>0&complete.cases(df_tnc$USES_TNC),]
-df$HHFAMINC <- as.factor(df$HHFAMINC)
-best51 <- c()
-best52 <- c()
-bsd51 <- c()
-bsd52 <- c()
-est1 <- c()
-est2 <- c()
-for(i in 1:1000){
-  temp <- sample_n(df,0.1*nrow(df),weight=df$WTPERFIN,replace=TRUE)
-  for(l in levels(df$HHFAMINC)){
-    est1 <- c(est1,mean(temp$USES_TNC=='1'&temp$HHFAMINC==l))
-    est2 <- c(est2,mean(temp$USES_TNC=='2'&temp$HHFAMINC==l))
-  }
-}
-for(l in 1:nlevels(df$HHFAMINC)){
-  e1 <- c()
-  e2 <- c()
-  for(i in 1:1000){
-    e1 <- c(e1,est1[nlevels(df$HHFAMINC)*(i-1)+l])
-    e2 <- c(e2,est2[nlevels(df$HHFAMINC)*(i-1)+l])
-  }
-  best51 <- c(best51,mean(e1))
-  best52 <- c(best52,mean(e2))
-  bsd51 <- c(bsd51,sd(e1))
-  bsd52 <- c(bsd52,sd(e2))
-}
-```
-
-```{r}
-df <- df_tnc[as.numeric(df_tnc$OCCAT)>0&complete.cases(df_tnc$USES_TNC),]
-df$OCCAT <- as.factor(df$OCCAT)
-best61 <- c()
-best62 <- c()
-bsd61 <- c()
-bsd62 <- c()
-est1 <- c()
-est2 <- c()
-for(i in 1:1000){
-  temp <- sample_n(df,0.1*nrow(df),weight=df$WTPERFIN,replace=TRUE)
-  for(l in levels(df$OCCAT)){
-    est1 <- c(est1,mean(temp$USES_TNC=='1'&temp$OCCAT==l))
-    est2 <- c(est2,mean(temp$USES_TNC=='2'&temp$OCCAT==l))
-  }
-}
-for(l in 1:nlevels(df$OCCAT)){
-  e1 <- c()
-  e2 <- c()
-  for(i in 1:1000){
-    e1 <- c(e1,est1[nlevels(df$OCCAT)*(i-1)+l])
-    e2 <- c(e2,est2[nlevels(df$OCCAT)*(i-1)+l])
-  }
-  best61 <- c(best61,mean(e1))
-  best62 <- c(best62,mean(e2))
-  bsd61 <- c(bsd61,sd(e1))
-  bsd62 <- c(bsd62,sd(e2))
-}
-```
 
 ```{r}
 df <- df_tnc[as.numeric(df_tnc$EDUC)>0&complete.cases(df_tnc$USES_TNC),]
 df$EDUC <- as.factor(df$EDUC)
-best71 <- c()
-best72 <- c()
-bsd71 <- c()
-bsd72 <- c()
+best51 <- c()
+best52 <- c()
+bsd51 <- c()
+bsd52 <- c()
 est1 <- c()
 est2 <- c()
 for(i in 1:1000){
@@ -313,43 +224,12 @@ for(l in 1:nlevels(df$EDUC)){
     e1 <- c(e1,est1[nlevels(df$EDUC)*(i-1)+l])
     e2 <- c(e2,est2[nlevels(df$EDUC)*(i-1)+l])
   }
-  best71 <- c(best71,mean(e1))
-  best72 <- c(best72,mean(e2))
-  bsd71 <- c(bsd71,sd(e1))
-  bsd72 <- c(bsd72,sd(e2))
+  best51 <- c(best51,mean(e1))
+  best52 <- c(best52,mean(e2))
+  bsd51 <- c(bsd51,sd(e1))
+  bsd52 <- c(bsd52,sd(e2))
 }
 ```
-
-```{r}
-df <- df_tnc[as.numeric(df_tnc$HHSTFIPS)>0&complete.cases(df_tnc$USES_TNC),]
-df$HHSTFIPS <- as.factor(df$HHSTFIPS)
-best81 <- c()
-best82 <- c()
-bsd81 <- c()
-bsd82 <- c()
-est1 <- c()
-est2 <- c()
-for(i in 1:1000){
-  temp <- sample_n(df,0.1*nrow(df),weight=df$WTPERFIN,replace=TRUE)
-  for(l in levels(df$HHSTFIPS)){
-    est1 <- c(est1,mean(temp$USES_TNC=='1'&temp$HHSTFIPS==l))
-    est2 <- c(est2,mean(temp$USES_TNC=='2'&temp$HHSTFIPS==l))
-  }
-}
-for(l in 1:nlevels(df$HHSTFIPS)){
-  e1 <- c()
-  e2 <- c()
-  for(i in 1:1000){
-    e1 <- c(e1,est1[nlevels(df$HHSTFIPS)*(i-1)+l])
-    e2 <- c(e2,est2[nlevels(df$HHSTFIPS)*(i-1)+l])
-  }
-  best81 <- c(best81,mean(e1))
-  best82 <- c(best82,mean(e2))
-  bsd81 <- c(bsd81,sd(e1))
-  bsd82 <- c(bsd82,sd(e2))
-}
-```
-
 
 ## Comparison
 
@@ -413,7 +293,7 @@ boxplot(dff1,main='diff ratio of mean of HEALTH')
 boxplot(dff2,main='diff ratio of sd of HEALTH')
 ```
 
-```{r HHFAMINC}
+```{r EDUC}
 dff1 <- c()
 dff2 <- c()
 for(i in 1:length(best51)){
@@ -424,51 +304,6 @@ for(i in 1:length(best51)){
 }
 dff1 <- (dff1-est_5$W)/ifelse(dff1<est_5$W,dff1,est_5$W)
 dff2 <- (dff2-est_5$E)/ifelse(dff2<est_5$E,dff2,est_5$E)
-boxplot(dff1,main='diff ratio of mean of HHFAMINC')
-boxplot(dff2,main='diff ratio of sd of HHFAMINC')
-```
-
-```{r OCCAT}
-dff1 <- c()
-dff2 <- c()
-for(i in 1:length(best61)){
-  dff1 <- c(dff1,best61[i])
-  dff1 <- c(dff1,best62[i])
-  dff2 <- c(dff2,bsd61[i])
-  dff2 <- c(dff2,bsd62[i])
-}
-dff1 <- (dff1-est_6$W)/ifelse(dff1<est_6$W,dff1,est_6$W)
-dff2 <- (dff2-est_6$E)/ifelse(dff2<est_6$E,dff2,est_6$E)
-boxplot(dff1,main='diff ratio of mean of OCCAT')
-boxplot(dff2,main='diff ratio of sd of OCCAT')
-```
-
-```{r EDUC}
-dff1 <- c()
-dff2 <- c()
-for(i in 1:length(best71)){
-  dff1 <- c(dff1,best71[i])
-  dff1 <- c(dff1,best72[i])
-  dff2 <- c(dff2,bsd71[i])
-  dff2 <- c(dff2,bsd72[i])
-}
-dff1 <- (dff1-est_7$W)/ifelse(dff1<est_7$W,dff1,est_7$W)
-dff2 <- (dff2-est_7$E)/ifelse(dff2<est_7$E,dff2,est_7$E)
 boxplot(dff1,main='diff ratio of mean of EDUC')
 boxplot(dff2,main='diff ratio of sd of EDUC')
-```
-
-```{r HHSTFIPS}
-dff1 <- c()
-dff2 <- c()
-for(i in 1:length(best81)){
-  dff1 <- c(dff1,best81[i])
-  dff1 <- c(dff1,best82[i])
-  dff2 <- c(dff2,bsd81[i])
-  dff2 <- c(dff2,bsd82[i])
-}
-dff1 <- (dff1-est_8$W)/ifelse(dff1<est_8$W,dff1,est_8$W)
-dff2 <- (dff2-est_8$E)/ifelse(dff2<est_8$E,dff2,est_8$E)
-boxplot(dff1,main='diff ratio of mean of HHSTFIPS')
-boxplot(dff2,main='diff ratio of sd of HHSTFIPS')
 ```
