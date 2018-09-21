@@ -47,7 +47,7 @@ require(packages)
 
 - Bayesian Belief Network with Missing Pattern: 
   
-  BNN could be a useful tool for encoding correlation patterns among TNC usage and demographic features (education level, gender, race, age level and health condition). In order to make the most of data, I firstly applied Random Forrest in nonparametic imputation, and then I generated new boolean variables to encode missing pattern. Finally, I put them all in BNN learning. It turned out that some correlation would be overestimated if simply removing entris with missing value, and education level and age level seem to be reliable strong features.
+  BNN could be a useful tool for encoding correlation patterns among TNC usage and demographic features (education level, gender, race, age level and health condition). In order to make the most of data, I firstly applied Random Forrest in nonparametic imputation, and then I generated new boolean variables to encode missing pattern. Finally, I put them all in BNN learning. It turned out that some correlation would be overestimated if simply removing entries with missing value, and education level and age level seem to be reliable strong features.
 
 - Hierarchical Semantic Model: 
   
