@@ -2,48 +2,59 @@
 
 Working space for NHTS Data Challenge.
 
-- Primary Documents
+## Organization
 
-  - [2017 NHTS User Guide](https://nhts.ornl.gov/assets/2017UsersGuide.pdf)
+-  `src`: Any R scripts (`*.R` and `*.Rmd`) and result files (`*.html`).
 
-  - [Exporing the NHTS with R](https://rawgit.com/Westat-Transportation/summarizeNHTS/master/inst/tutorials/workshop/Workshop.html#(1))
-
-- Survey Data And Preprocessing
-
-  - [Jackknif Resampling](https://en.wikipedia.org/wiki/Jackknife_resampling) 
+  - `bootstrap.*`: Comparison of weighted m-out-of-n bootstrap and delete-a-group jackknife resampling. 
   
-  - [Variable Clustering](http://math.furman.edu/~dcs/courses/math47/R/library/Hmisc/html/varclus.html)
+  - `Cramer_s_V.*`: Correlation bwtween `USES_TNC` and demographic features.
   
-  - [Imputing Missing Values](https://www.analyticsvidhya.com/blog/2016/03/tutorial-powerful-packages-imputing-missing-values/)
-
-- Bayesian Statistics
-
-  - [Using Survey Design Weights Bayesian Regression Models1](https://discourse.mc-stan.org/t/survey-weighted-regression/1654/10)
+  - `BNN.*`: Bayesian Belief Network of `USES_TNC` and demographic features.
   
-  - [Using Survey Design Weights Bayesian Regression Models2](https://rpubs.com/corey_sparks/157901)
+  - `BNN-with-Missing.*`: Missing value imputation and missing pattern encoding in BNN.
   
-  - [Using Survey Design Weights Bayesian Regression Models3](http://rpubs.com/corey_sparks/164805)
-
-  - [Overview of Bayesian Networks With Examples in R](http://www.ucdenver.edu/academics/colleges/PublicHealth/Academics/departments/Biostatistics/WorkingGroups/Documents/Networks%20Presentation%20With%20Sachs%20-%20032317.pdf)
-
-  - [Statistical Models for Causal Analysis](http://web.mit.edu/teppei/www/teaching/Keio2016/01po.pdf)
-
-  - [Ideal Point Estimation](https://jrnold.github.io/bugs-examples-in-stan/legislators)
+  - `Semantic-Analysis.*`: Hierarchical n-gram model of transportation transformation.
   
-  - [Bayesian Neural Network](http://edwardlib.org/tutorials/bayesian-neural-network)
-  
-- Random Forrest
+- `data`: Derived variable configuration.
 
-  - [Weighted Random Forrest](https://www.rdocumentation.org/packages/randomForestSRC/versions/2.4.1/topics/rfsrc)
-  
-- XGBoost
+- `result`: Markov chain of transportation transformation obtained by partial-pooling model.
 
-  - [EXtreme Gradient Boosting Training](https://www.rdocumentation.org/packages/xgboost/versions/0.71.2/topics/xgb.train)
-  
-- Other Resources
+## Install
 
-  - [PeopleforBikes](http://peopleforbikes.org/our-work/statistics/statistics-category/?cat=participation-statistics)
+This project depends on [R](https://cran.r-project.org/). You will need to install several R packages for this project:
 
-  - [Automated Vehicle Identification](https://www.mccarran.com/Business/Transportation/TaxiTNC)
+```r
+# R pipeline of NHTS data
+if(!require(summarizeNHTS)){
+install.packages('devtools')
+devtools::install_github('Westat-Transportation/summarizeNHTS')
+require(summarizeNHTS)
+}
+# List of other packages this project depends on
+packages <- c("dplyr","survey","vcd","knitr","bnlearn","Rgraphviz","missForest")
+if(!require(packages)){
+install.packages(packages)
+require(packages)
+}
+```
 
-  - [R Graphics](https://www.r-graph-gallery.com/)
+## Method
+
+- Resampling Fitting
+
+  This work is inspired by the idea of function fitting. Firstly, I chosed a ratio as hyperparameter (in this project, the ratio is 0.1), then I used weighted m-out-of-n bootstrapping to mimic jackkifing, which achieved very close results in estimation and corresponding standard error of marginal and conditional probability (some results are shown in `src/bootstrape.html`). I also compared them in more complicated calculation, like Cramer's V, and I applied this bootstrapping strategy in Bayesian Belief Network. Since bootstrapping is known to be consistent in more cases and some modern model/algorithm, such as BNN, is more or less based on it, this work broadens and deepens our exploration of survey data. 
+
+- Bayesian Belief Network with Missing Pattern: 
+
+  BNN could be a useful tool for encoding correlation patterns among TNC usage and demographic features (education level, gender, race, age level and health condition). In order to make the most of data, I firstly applied Random Forrest in nonparametic imputation, and then I generated new boolean variables to encode missing pattern. Finally, I put them all in BNN learning. It turned out that some correlation would be overestimated if simply removing entris with missing value, and education level and age level look to be reliable strong features.
+
+- Hierarchical Semantic Model: 
+
+  This work is inspired by n-gram model in NLP. I used a demographic feature (education level) to build hierarchical models for transportation transformation, and it turned out that partial-pooling model outperformed fully-pooling/non-hierarchical model and no-pooling model.
+
+## Results
+
+## Build
+
+knit `src/*.Rmd`
