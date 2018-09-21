@@ -6,15 +6,15 @@ Working space for NHTS Data Challenge.
 
 -  `src`: Any R scripts (`*.R` and `*.Rmd`) and result files (`*.html`).
 
-  - `bootstrap.*`: Comparison of weighted m-out-of-n bootstrap and delete-a-group jackknife resampling. 
+    - `bootstrap.*`: Comparison of weighted m-out-of-n bootstrap and delete-a-group jackknife resampling. 
   
-  - `Cramer_s_V.*`: Correlation bwtween `USES_TNC` and demographic features.
+    - `Cramer_s_V.*`: Correlation bwtween `USES_TNC` and demographic features.
   
-  - `BNN.*`: Bayesian Belief Network of `USES_TNC` and demographic features.
+    - `BNN.*`: Bayesian Belief Network of `USES_TNC` and demographic features.
   
-  - `BNN-with-Missing.*`: Missing value imputation and missing pattern encoding in BNN.
+    - `BNN-with-Missing.*`: Missing value imputation and missing pattern encoding in BNN.
   
-  - `Semantic-Analysis.*`: Hierarchical n-gram model of transportation transformation.
+    - `Semantic-Analysis.*`: Hierarchical n-gram model of transportation transformation.
   
 - `data`: Derived variable configuration.
 
