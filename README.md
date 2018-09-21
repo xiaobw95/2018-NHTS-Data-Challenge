@@ -57,4 +57,4 @@ require(packages)
 
 ## Build
 
-knit `src/*.Rmd`
+Download [2017 datasets](https://nhts.ornl.gov/downloads) to `~/data/cvs/` and knit `src/*.Rmd`
