@@ -10,9 +10,9 @@ Working space for NHTS Data Challenge.
   
     - `Cramer_s_V.*`: Correlation bwtween `USES_TNC` and demographic features.
   
-    - `BNN.*`: Bayesian Belief Network of `USES_TNC` and demographic features.
+    - `BBN.*`: Bayesian Belief Network of `USES_TNC` and demographic features.
   
-    - `BNN-with-Missing.*`: Missing value imputation and missing pattern encoding in BNN.
+    - `BBN-with-Missing.*`: Missing value imputation and missing pattern encoding in BNN.
   
     - `Semantic-Analysis.*`: Hierarchical n-gram model of transportation transformation.
   
