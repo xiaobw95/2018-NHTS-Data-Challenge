@@ -1,6 +1,6 @@
 #data
 library(summarizeNHTS)
-nhts_data <- read_data("2017", "./data")
+nhts_data <- read_data("2017", "../data")
 df_trip <- as.data.frame(nhts_data$data$trip)
 df_person <- as.data.frame(nhts_data$data$person)
 
