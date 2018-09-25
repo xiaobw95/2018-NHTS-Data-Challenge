@@ -18,7 +18,13 @@ Working space for NHTS Data Challenge.
   
 - `data`: Derived variable configuration.
 
-- `result`: Markov chain of transportation transformation obtained by partial-pooling model.
+- `result`: Output data, figures and tables.
+
+    - `data`: Markov chain of transportation transformation obtained by partial-pooling model.
+    
+    - `fig`: Model visualizations.
+    
+    - `table`: Models or methods comparison.
 
 ## Install
 
