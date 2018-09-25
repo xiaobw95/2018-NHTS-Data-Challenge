@@ -63,31 +63,37 @@ require(packages)
 
 - Bayesian Belief Network with Missing Values
 
-<p align="center">
-  <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/table/Cramer_s_V_table.png" alt=""/>
-</p>
+    - Cramer's V
 
-<p align="center">
-  <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/Cramer_s_V.PNG" alt=""/>
-</p>
+        <p align="center">
+        <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/table/Cramer_s_V_table.png" alt=""/>
+        </p>
 
-<p align="center">
-  <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/BBN.PNG" alt=""/>
-</p>
+        <p align="center">
+        <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/Cramer_s_V.PNG" alt=""/>
+        </p>
 
-<p align="center">
-  <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/BBN-with-Missing.PNG" alt=""/>
-</p>
+    - BBN
+        <p align="center">
+        <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/BBN.PNG" alt=""/>
+        </p>
+    
+    - BBN with Missing
+        <p align="center">
+        <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/BBN-with-Missing.PNG" alt=""/>
+        </p>
 
 - Hierarchical N-gram Model of Transportation Transformation
 
-<p align="center">
-  <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/table/n-gram.png" alt=""/>
-</p>
+    - Model Comparison
+        <p align="center">
+        <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/table/n-gram.png" alt=""/>
+        </p>
 
-<p align="center">
-  <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/TransportationTransformation.PNG" alt=""/>
-</p>
+    - Partial-pooling Model Visualization (local)
+        <p align="center">
+        <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/TransportationTransformation.PNG" alt=""/>
+        </p>
 
 ## Build
 
