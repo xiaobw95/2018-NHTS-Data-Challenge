@@ -53,13 +53,41 @@ require(packages)
 
 - Bayesian Belief Network with Missing Pattern: 
   
-  BBN could be a useful tool for encoding correlation patterns among TNC usage and demographic features (education level, gender, race, age level and health condition). In order to make the most of data, I firstly applied Random Forrest in nonparametic imputation, and then I generated new boolean variables to encode missing pattern. Finally, I put them all in BBN learning. It turned out that some correlation would be overestimated if simply removing entries with missing value, and education level and age level seem to be reliable strong features.
+  BBN could be a useful tool for encoding correlation patterns among TNC usage and demographic features (education level, gender, race, age level and health condition). In order to make the most of data, I firstly applied Random Forrest in nonparametric imputation, and then I generated new boolean variables to encode missing pattern. Finally, I put them all in BBN learning. It turned out that some correlation would be overestimated if simply removing entries with missing value, and education level and age level seem to be reliable strong features.
 
 - Hierarchical Semantic Model: 
   
   This work is inspired by n-gram model in NLP. I used a demographic feature (education level) to build hierarchical models for transportation transformation, and it turned out that partial-pooling model outperformed fully-pooling/non-hierarchical model and no-pooling model.
 
 ## Results
+
+- Bayesian Belief Network with Missing Values
+
+<p align="center">
+  <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/table/Cramer_s_V_table.png" alt=""/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/Cramer_s_V.PNG" alt=""/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/BBN.PNG" alt=""/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/BBN-with-Missing.PNG" alt=""/>
+</p>
+
+- Hierarchical N-gram Model of Transportation Transformation
+
+<p align="center">
+  <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/table/n-gram.png" alt=""/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/TransportationTransformation.PNG" alt=""/>
+</p>
 
 ## Build
 
