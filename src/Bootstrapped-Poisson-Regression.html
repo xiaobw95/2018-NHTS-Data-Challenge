@@ -171,14 +171,23 @@ df_numTNC &lt;- df_numTNC[lambda(df_numTNC$EDUC)&amp;
                        complete.cases(df_numTNC$AGE_LEVEL)&amp;
                        lambda(df_numTNC$URBAN)&amp;
                        lambda(df_numTNC$OUTOFTWN)&amp;
-                       lambda(df_numTNC$HHFAMINC)
+                       lambda(df_numTNC$HHFAMINC)&amp;
+                       lambda(df_numTNC$DRIVER)&amp;
+                       lambda(df_numTNC$HHSIZE)&amp; 
+                       lambda(df_numTNC$OCCAT)&amp;
+                       lambda(df_numTNC$HEALTH)&amp;
+                       lambda(df_numTNC$MSASIZE)&amp;
+                       lambda(df_numTNC$HBRESDN)&amp;
+                       lambda(df_numTNC$HBPPOPDN)&amp;
+                       lambda(df_numTNC$HHVEHCNT)&amp;
+                       lambda(df_numTNC$HBHTNRNT)
                    ,]
 
 set.seed(2018)
 for(i in 1:1000){
   temp &lt;- sample_n(df_numTNC,0.1*nrow(df_numTNC),weight=df_numTNC$WTPERFIN,replace=TRUE)
-  model &lt;- glm(numTNC~EDUC+AGE_LEVEL+URBAN+OUTOFTWN+HHFAMINC,data=temp,family='poisson')
-  if(length(model$coefficients)!=21){
+  model &lt;- glm(numTNC~EDUC+AGE_LEVEL+URBAN+OUTOFTWN+HHFAMINC+DRIVER+HHSIZE+OCCAT+HEALTH+MSASIZE+HBRESDN+HBPPOPDN+HHVEHCNT+HBHTNRNT,data=temp,family='poisson')
+  if(length(model$coefficients)!=60){
     i = i - 1
   }
   else{
@@ -189,30 +198,1429 @@ for(i in 1:1000){
       coeff &lt;- cbind(coeff,data.frame(model$coefficients))
     } 
   }
-}
+}</code></pre>
+<pre><code>## Warning: glm.fit: fitted rates numerically 0 occurred
 
-rowSums(coeff)/ncol(coeff)</code></pre>
-<pre><code>##  (Intercept)       EDUC02       EDUC03       EDUC04       EDUC05 
-##  -1.37562554   0.37654870  -0.04926237   0.74643294   0.67637254 
-##   AGE_LEVEL2   AGE_LEVEL3      URBAN02      URBAN03      URBAN04 
-##  -0.07690204  -0.61701362  -1.24185763 -10.34387283  -0.91527126 
-##   OUTOFTWN02   HHFAMINC02   HHFAMINC03   HHFAMINC04   HHFAMINC05 
-##  -1.94053647  -0.16623330  -0.32771976  -0.93288852  -1.05383366 
-##   HHFAMINC06   HHFAMINC07   HHFAMINC08   HHFAMINC09   HHFAMINC10 
-##  -0.34799493  -0.84383149  -0.62695380  -0.39571127  -0.27252183 
-##   HHFAMINC11 
-##   0.14998722</code></pre>
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred
+
+## Warning: glm.fit: fitted rates numerically 0 occurred</code></pre>
+<pre class="r"><code>rowSums(coeff)/ncol(coeff)</code></pre>
+<pre><code>##   (Intercept)        EDUC02        EDUC03        EDUC04        EDUC05 
+##  -11.21859552    6.37923364    5.71645949    6.41397350    6.01593512 
+##    AGE_LEVEL2    AGE_LEVEL3       URBAN02       URBAN03       URBAN04 
+##   -0.06093882   -0.82143831   -2.23869724  -14.43742245   -0.82254644 
+##    OUTOFTWN02    HHFAMINC02    HHFAMINC03    HHFAMINC04    HHFAMINC05 
+##   -2.15727269   -0.33963269    1.68391392    1.29474672    1.83290364 
+##    HHFAMINC06    HHFAMINC07    HHFAMINC08    HHFAMINC09    HHFAMINC10 
+##    2.86494650    2.20492173    2.78249115    3.30099131    3.17992974 
+##    HHFAMINC11      DRIVER02        HHSIZE       OCCAT02       OCCAT03 
+##    3.57252984    0.17838151   -0.26022984   -1.05960486   -2.55445266 
+##       OCCAT04       OCCAT97      HEALTH02      HEALTH03      HEALTH04 
+##   -0.60985354  -13.97602972    0.04694949    0.14940464   -1.99973281 
+##      HEALTH05     MSASIZE02     MSASIZE03     MSASIZE04     MSASIZE05 
+##  -14.79839316    1.97525660    1.22740377    1.91934589    2.25997820 
+##     MSASIZE06  HBRESDN17000    HBRESDN300   HBRESDN3000  HBRESDN30000 
+##    2.17638213    1.83620108    0.07368815    0.52216032    1.30392456 
+##     HBRESDN50   HBRESDN7000    HBRESDN750 HBPPOPDN17000   HBPPOPDN300 
+##   -0.63629420    1.50785624   -0.05043802   -0.67482138   -0.24777250 
+##  HBPPOPDN3000 HBPPOPDN30000    HBPPOPDN50  HBPPOPDN7000   HBPPOPDN750 
+##    0.02810355   -0.03715054    0.42345964   -0.39013791   -0.87471561 
+##      HHVEHCNT    HBHTNRNT20    HBHTNRNT30    HBHTNRNT40    HBHTNRNT50 
+##   -0.17114357   -0.43387905   -0.23763926    0.02044252   -0.51366342 
+##    HBHTNRNT60    HBHTNRNT70    HBHTNRNT80    HBHTNRNT90    HBHTNRNT95 
+##   -0.02839573    0.37330556    0.27493470   -0.49306195   -6.78596547</code></pre>
 <pre class="r"><code>apply(as.matrix(coeff),1,sd)</code></pre>
-<pre><code>## (Intercept)      EDUC02      EDUC03      EDUC04      EDUC05  AGE_LEVEL2 
-##   0.4185474   0.4624683   0.4031331   0.3924715   0.4155615   0.2060544 
-##  AGE_LEVEL3     URBAN02     URBAN03     URBAN04  OUTOFTWN02  HHFAMINC02 
-##   0.2231313   0.6353690   0.5887790   0.3675844   0.2071671   0.3860009 
-##  HHFAMINC03  HHFAMINC04  HHFAMINC05  HHFAMINC06  HHFAMINC07  HHFAMINC08 
-##   0.3983145   0.3921722   0.3677936   0.4032284   0.3323625   0.3166478 
-##  HHFAMINC09  HHFAMINC10  HHFAMINC11 
-##   0.3440061   0.3126380   0.3013877</code></pre>
-<pre class="r"><code>boxplot(t(coeff))</code></pre>
-<p><img src="data:image/png;base64,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" width="672" /></p>
+<pre><code>##   (Intercept)        EDUC02        EDUC03        EDUC04        EDUC05 
+##     9.5531107     6.7801666     6.7380527     6.7338377     6.7319687 
+##    AGE_LEVEL2    AGE_LEVEL3       URBAN02       URBAN03       URBAN04 
+##     0.2527559     0.4427538     3.6957136     2.6378454     0.7704868 
+##    OUTOFTWN02    HHFAMINC02    HHFAMINC03    HHFAMINC04    HHFAMINC05 
+##     0.3566304     6.8853020     5.3148473     5.2069426     5.1125186 
+##    HHFAMINC06    HHFAMINC07    HHFAMINC08    HHFAMINC09    HHFAMINC10 
+##     5.1095932     5.1073796     5.1206225     5.0945572     5.0886206 
+##    HHFAMINC11      DRIVER02        HHSIZE       OCCAT02       OCCAT03 
+##     5.0976094     0.4656520     0.1238705     0.4705748     2.5867887 
+##       OCCAT04       OCCAT97      HEALTH02      HEALTH03      HEALTH04 
+##     0.2898705     3.9466088     0.2453856     0.3280524     4.6501708 
+##      HEALTH05     MSASIZE02     MSASIZE03     MSASIZE04     MSASIZE05 
+##     1.3322752     3.8960478     3.9088131     3.9002273     3.8854098 
+##     MSASIZE06  HBRESDN17000    HBRESDN300   HBRESDN3000  HBRESDN30000 
+##     4.3425592     0.7378325     1.0072820     0.5361154     0.8793922 
+##     HBRESDN50   HBRESDN7000    HBRESDN750 HBPPOPDN17000   HBPPOPDN300 
+##     4.5315358     0.5900816     0.7497435     0.9747795     2.1860572 
+##  HBPPOPDN3000 HBPPOPDN30000    HBPPOPDN50  HBPPOPDN7000   HBPPOPDN750 
+##     0.7560187     1.0765018     5.2420839     0.8718412     2.6023931 
+##      HHVEHCNT    HBHTNRNT20    HBHTNRNT30    HBHTNRNT40    HBHTNRNT50 
+##     0.1315240     0.4455160     0.4305705     0.4200477     0.4921236 
+##    HBHTNRNT60    HBHTNRNT70    HBHTNRNT80    HBHTNRNT90    HBHTNRNT95 
+##     0.4459431     0.5228466     0.4730067     1.2444153     7.9081222</code></pre>
+<pre class="r"><code>coeff &lt;- data.frame(t(coeff))</code></pre>
+<pre><code>## Warning in data.row.names(row.names, rowsi, i): some row.names duplicated:
+## 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356,357,358,359,360,361,362,363,364,365,366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,402,403,404,405,406,407,408,409,410,411,412,413,414,415,416,417,418,419,420,421,422,423,424,425,426,427,428,429,430,431,432,433,434,435,436,437,438,439,440,441,442,443,444,445,446,447,448,449,450,451,452,453,454,455,456,457,458,459,460,461,462,463,464,465,466,467,468,469,470,471,472,473,474,475,476,477,478,479,480,481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,496,497,498,499,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540,541,542,543,544,545,546,547,548,549,550,551,552,553,554,555,556,557,558,559,560,561,562,563,564,565,566,567,568,569,570,571,572,573,574,575,576,577,578,579,580,581,582,583,584,585,586,587,588,589,590,591,592,593,594,595,596,597,598,599,600,601,602,603,604,605,606,607,608,609,610,611,612,613,614,615,616,617,618,619,620,621,622,623,624,625,626,627,628,629,630,631,632,633,634,635,636,637,638,639,640,641,642,643,644,645,646,647,648,649,650,651,652,653,654,655,656,657,658,659,660,661,662,663,664,665,666,667,668,669,670,671,672,673,674,675,676,677,678,679,680,681,682,683,684,685,686,687,688,689,690,691,692,693,694,695,696,697,698,699,700,701,702,703,704,705,706,707,708,709,710,711,712,713,714,715,716,717,718,719,720,721,722,723,724,725,726,727,728,729,730,731,732,733,734,735,736,737,738,739,740,741,742,743,744,745,746,747,748,749,750,751,752,753,754,755,756,757,758,759,760,761,762,763,764,765,766,767,768,769,770,771,772,773,774,775,776,777,778,779,780,781,782,783,784,785,786,787,788,789,790,791,792,793,794,795,796,797,798,799,800,801,802,803,804,805,806,807,808,809,810,811,812,813,814,815,816,817,818,819,820,821,822,823,824,825,826,827,828,829,830,831,832,833,834,835,836,837,838,839,840,841,842,843,844,845,846,847,848,849,850,851,852,853,854,855,856,857,858,859,860,861,862,863,864,865,866,867,868,869,870,871,872,873,874,875,876,877,878,879,880,881,882,883,884,885,886,887,888,889,890,891,892,893,894
+## --&gt; row.names NOT used</code></pre>
+<pre class="r"><code>ggplot(stack(coeff), aes(x = ind, y = values)) +
+    geom_boxplot()+geom_hline(yintercept=0,col=2)+theme(axis.text.x  = element_text(angle=90, vjust=0.5))</code></pre>
+<p><img src="data:image/png;base64,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" width="672" /></p>
 </div>
 
 

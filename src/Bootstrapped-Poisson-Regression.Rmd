@@ -23,7 +23,7 @@ df_numTNC <- df_trip %>% mutate(isTNC=as.integer(df_trip$TRPTRANS%in%c('17','18'
 
 ## Bootstrapped Poisson Regression
 
-```{r}
+```{r, message=FALSE}
 getOption("na.action")
 
 lambda <- function(x) as.numeric(as.character(x)) > 0
@@ -31,14 +31,23 @@ df_numTNC <- df_numTNC[lambda(df_numTNC$EDUC)&
                        complete.cases(df_numTNC$AGE_LEVEL)&
                        lambda(df_numTNC$URBAN)&
                        lambda(df_numTNC$OUTOFTWN)&
-                       lambda(df_numTNC$HHFAMINC)
+                       lambda(df_numTNC$HHFAMINC)&
+                       lambda(df_numTNC$DRIVER)&
+                       lambda(df_numTNC$HHSIZE)& 
+                       lambda(df_numTNC$OCCAT)&
+                       lambda(df_numTNC$HEALTH)&
+                       lambda(df_numTNC$MSASIZE)&
+                       lambda(df_numTNC$HBRESDN)&
+                       lambda(df_numTNC$HBPPOPDN)&
+                       lambda(df_numTNC$HHVEHCNT)&
+                       lambda(df_numTNC$HBHTNRNT)
                    ,]
 
 set.seed(2018)
 for(i in 1:1000){
   temp <- sample_n(df_numTNC,0.1*nrow(df_numTNC),weight=df_numTNC$WTPERFIN,replace=TRUE)
-  model <- glm(numTNC~EDUC+AGE_LEVEL+URBAN+OUTOFTWN+HHFAMINC,data=temp,family='poisson')
-  if(length(model$coefficients)!=21){
+  model <- glm(numTNC~EDUC+AGE_LEVEL+URBAN+OUTOFTWN+HHFAMINC+DRIVER+HHSIZE+OCCAT+HEALTH+MSASIZE+HBRESDN+HBPPOPDN+HHVEHCNT+HBHTNRNT,data=temp,family='poisson')
+  if(length(model$coefficients)!=60){
     i = i - 1
   }
   else{
@@ -53,5 +62,7 @@ for(i in 1:1000){
 
 rowSums(coeff)/ncol(coeff)
 apply(as.matrix(coeff),1,sd)
-boxplot(t(coeff))
+coeff <- data.frame(t(coeff))
+ggplot(stack(coeff), aes(x = ind, y = values)) +
+    geom_boxplot()+geom_hline(yintercept=0,col=2)+theme(axis.text.x  = element_text(angle=90, vjust=0.5))
 ```
