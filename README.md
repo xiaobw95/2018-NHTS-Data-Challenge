@@ -82,6 +82,13 @@ require(packages)
         <p align="center">
         <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/BBN-with-Missing.PNG" alt=""/>
         </p>
+        
+- Bootstrapped Poisson Regression
+
+    - Parameters
+        <p align="center">
+        <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/Parameters_Poisson.PNG" alt=""/>
+        </p>
 
 - Hierarchical N-gram Model of Transportation Transformation
 
@@ -95,12 +102,6 @@ require(packages)
         <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/TransportationTransformation.PNG" alt=""/>
         </p>
 
-- Bootstrapped Poisson Regression
-
-    - Parameters
-        <p align="center">
-        <img src="https://github.com/xiaobw95/2018-NHTS-Data-Challenge/blob/master/result/fig/Parameters_Poisson.PNG" alt=""/>
-        </p>
         
 ## Build
 
