@@ -1,0 +1,49 @@
+---
+title: "Bootstrapped-Poisson-Regression"
+author: "Bowen Xiao"
+date: "September 26, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data
+
+```{r}
+#load data
+library(summarizeNHTS)
+nhts_data <- read_data("2017", "../data")
+
+library(dplyr)
+df_trip <- data.frame(nhts_data$data$trip)
+df_numTNC <- df_trip %>% mutate(isTNC=as.integer(df_trip$TRPTRANS=='17')) %>% group_by(HOUSEID,PERSONID) %>% summarise(numTNC=sum(isTNC)) %>% merge(data.frame(nhts_data$weights$person),by=c("HOUSEID","PERSONID")) %>% merge(data.frame(nhts_data$data$person),by=c("HOUSEID","PERSONID"))
+```
+
+## Bootstrapped Poisson Regression
+
+```{r}
+getOption("na.action")
+
+set.seed(2018)
+for(i in 1:1000){
+  temp <- sample_n(df_numTNC,0.1*nrow(df_numTNC),weight=df_numTNC$WTPERFIN,replace=TRUE)
+  model <- glm(numTNC~EDUC+AGE_LEVEL,data=temp,family='poisson')
+  if(length(model$coefficients)!=10){
+    i = i-1
+  }
+  else{
+   if(i==1){
+      coeff <- data.frame(model$coefficients)
+    }
+    else{
+      coeff <- cbind(coeff,data.frame(model$coefficients))
+    } 
+  }
+}
+
+rowSums(coeff)/ncol(coeff)
+apply(as.matrix(coeff),1,sd)
+boxplot(t(coeff))
+```
