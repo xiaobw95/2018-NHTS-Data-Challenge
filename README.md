@@ -13,6 +13,8 @@ Working space for NHTS Data Challenge.
     - `BBN.*`: Bayesian Belief Network of `USES_TNC` and demographic features.
   
     - `BBN-with-Missing.*`: Missing value imputation and missing pattern encoding in BNN.
+    
+    - `Bootstrapped-Poisson-Regression.*`: Bootstrapped Poisson Regression.
   
     - `Semantic-Analysis.*`: Hierarchical n-gram model of transportation transformation.
   
@@ -105,4 +107,4 @@ require(packages)
         
 ## Build
 
-Download [2017 datasets](https://nhts.ornl.gov/downloads) to `~/data/cvs/` and knit `src/*.Rmd`
+Download [2017 datasets](https://nhts.ornl.gov/downloads) to `~/data/cvs/`, replace `derived_variable_config.csv` and knit `src/*.Rmd`
